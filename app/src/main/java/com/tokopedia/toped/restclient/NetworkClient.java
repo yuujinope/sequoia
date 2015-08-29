@@ -1,6 +1,7 @@
 package com.tokopedia.toped.restclient;
 
 import android.content.Context;
+import android.util.Log;
 
 /**
  * Created by Tkpd_Eka on 8/29/2015.
@@ -24,6 +25,7 @@ public class NetworkClient extends VolleyNetwork{
     @Override
     public void onRequestResponse(String response) {
         listener.onSuccess(response);
+        Log.i("Network Response", response);
     }
 
     @Override

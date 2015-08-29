@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
+import com.tokopedia.toped.restclient.NetworkClient;
 
 import java.io.IOException;
 
@@ -32,7 +33,6 @@ public class GCMHandler extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
             try {
                 GetGCMId();
             } catch (IOException e) {
@@ -46,5 +46,23 @@ public class GCMHandler extends IntentService {
         InstanceID id = InstanceID.getInstance(this);
         String token = id.getToken("51092408192", GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
         Log.i("Cool Log", token);
+        sendToBackEnd(token);
     }
+
+    private void sendToBackEnd(String token) {
+        NetworkClient networkClient = new NetworkClient(this, "http://128.199.227.169:8000/push");
+        networkClient.addParam("userid", MySession.getInstance(this).getLoginId());
+        networkClient.addParam("regid", token);
+        networkClient.addParam("type", MySession.getInstance(this).getUserType());
+        networkClient.setMethod(NetworkClient.METHOD_POST);
+        networkClient.setListener(new NetworkClient.NetworkClientSuccess() {
+            @Override
+            public void onSuccess(String s) {
+
+            }
+        });
+        networkClient.commit();
+    }
+
+
 }
