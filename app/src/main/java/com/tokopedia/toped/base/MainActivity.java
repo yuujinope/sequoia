@@ -37,7 +37,7 @@ public abstract class MainActivity extends AppCompatActivity {
 
     private void prepareToolbar() {
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(android.R.drawable.ic_input_add);
+        toolbar.setNavigationIcon(R.drawable.menu);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

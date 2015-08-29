@@ -19,6 +19,7 @@ public class FragmentLauncher extends BaseFragment {
         TextInputLayout passwordLayout;
         EditText email;
         EditText password;
+        View loginButton;
     }
 
     private ViewHolder holder;
@@ -40,6 +41,7 @@ public class FragmentLauncher extends BaseFragment {
         holder.email = (EditText)findViewById(R.id.email_text);
         holder.password = (EditText)findViewById(R.id.password_text);
         holder.passwordLayout = (TextInputLayout)findViewById(R.id.password);
+        holder.loginButton = findViewById(R.id.login_button);
         return holder;
     }
 

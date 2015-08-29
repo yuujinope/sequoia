@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    >
+
+    <TextView
+        android:id="@+id/name"
+        android:text="TEST asdasda"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"/>
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_below="@id/name"
+        android:textColor="#747474"
+        android:text="dest: sdajs askdalk laskdaslkj asdas aa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        />
+
+    <ImageView
+        android:id="@+id/clock"
+        android:src="@drawable/clock_copy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_below="@id/clock"
+        android:text="20m"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#c2c2c2"
+        />
+
+
+
+</RelativeLayout>

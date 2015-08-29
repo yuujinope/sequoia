@@ -53,5 +53,17 @@
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
 
+    <TextView
+        android:id="@+id/login_button"
+        android:text="LOGIN"
+        android:textColor="#ffffff"
+        android:textSize="17sp"
+        android:background="@drawable/button"
+        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/launcher_left_margin"
+        android:layout_below="@id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 
 </RelativeLayout>
