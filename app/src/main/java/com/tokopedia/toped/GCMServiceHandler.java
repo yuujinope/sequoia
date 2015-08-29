@@ -23,7 +23,7 @@ public class GCMServiceHandler extends GcmListenerService {
     }
 
     private void sendNotification(String title, String message) {
-        Intent intent = new Intent(this, SellerActivity.class);
+        Intent intent = new Intent(this, ListingActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
