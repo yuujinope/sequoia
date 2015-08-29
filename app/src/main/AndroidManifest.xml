@@ -27,11 +27,7 @@
         <activity
             android:name=".ListingActivity"
             android:label="Get Done" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name=".MapActivity"
@@ -66,6 +62,29 @@
             android:exported="false" >
         </service>
 
-    </application>
+        <activity
+            android:name=".LauncherActivity"
+            android:label="Get Done" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <receiver
+        android:name="com.google.android.gms.gcm.GcmReceiver"
+        android:exported="true"
+        android:permission="com.google.android.c2dm.permission.SEND" >
+        <intent-filter>
+            <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            <category android:name="com.tokopedia.toped.gcm" />
+        </intent-filter>
+    </receiver>
+
+
+</application>
 
 </manifest>
