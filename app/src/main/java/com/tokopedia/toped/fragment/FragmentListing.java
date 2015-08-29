@@ -65,7 +65,7 @@ public class FragmentListing extends BaseFragment{
     }
 
     private void getList(){
-        NetworkClient client = new NetworkClient(getActivity(), "http://100.117.102.187:1337/list");
+        NetworkClient client = new NetworkClient(getActivity(), "http://128.199.227.169:8000/list");
         client.setMethod(client.METHOD_GET);
         client.setListener(new NetworkClient.NetworkClientSuccess() {
             @Override

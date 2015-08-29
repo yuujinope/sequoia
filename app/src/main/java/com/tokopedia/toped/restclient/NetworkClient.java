@@ -26,4 +26,9 @@ public class NetworkClient extends VolleyNetwork{
         listener.onSuccess(response);
     }
 
+    @Override
+    public void commit() {
+        System.out.println("Sending " + param.toString());
+        super.commit();
+    }
 }

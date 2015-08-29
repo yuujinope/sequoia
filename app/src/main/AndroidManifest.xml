@@ -25,7 +25,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.NoActionBar" >
         <activity
-            android:name=".ListingActivity"
+            android:name=".PostListingActivity"
             android:label="Get Done" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,6 +46,8 @@
 
         <activity android:name=".DetailListingActivity"
             android:label="Detail listing"/>
+
+        <activity android:name=".PickCarrierActivity"/>
 
         <meta-data
             android:name="com.google.android.gms.version"
