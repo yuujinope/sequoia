@@ -1,0 +1,18 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=C0:F1:D9:F9:ED:3F:60:7D:E1:86:80:8C:77:79:86:67:6C:B9:9E:A6%3Bcom.tokopedia.toped.fragment
+
+    You can also add your credentials to an existing key, using this line:
+    C0:F1:D9:F9:ED:3F:60:7D:E1:86:80:8C:77:79:86:67:6C:B9:9E:A6;com.tokopedia.toped.fragment
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
+        YOUR_KEY_HERE
+    </string>
+</resources>
