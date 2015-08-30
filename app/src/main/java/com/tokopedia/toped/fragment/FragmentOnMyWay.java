@@ -64,6 +64,12 @@ public class FragmentOnMyWay extends BaseFragment {
         getOnMyWayList();
     }
 
+    public void refresh(){
+        models.clear();
+        adapter.notifyDataSetChanged();
+        getOnMyWayList();
+    }
+
     private void getOnMyWayList() {
         NetworkClient network = new NetworkClient(getActivity(), "http://128.199.227.169:8000/list");
         network.setMethod(network.METHOD_GET);
