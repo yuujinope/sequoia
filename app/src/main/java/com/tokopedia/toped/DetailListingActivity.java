@@ -40,9 +40,9 @@ public class DetailListingActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_listing);
         holder = new ViewHolder();
-        map = MapFragment.newInstance();
-        getFragmentManager().beginTransaction().add(R.id.map, map).commit();
-        mMap = map.getMap();
+//        map = MapFragment.newInstance();
+//        getFragmentManager().beginTransaction().add(R.id.map, map).commit();
+//        mMap = map.getMap();
         holder.name = (TextView)findViewById(R.id.name);
         holder.name.setText("Kulit pisang");
         holder.name.setOnClickListener(new View.OnClickListener() {

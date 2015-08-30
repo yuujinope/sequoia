@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/name"
-        android:text="Tukang ojeks"
+        android:text="Pedagang cina"
         android:textStyle="bold"
         android:textColor="#000000"
         android:layout_toRightOf="@+id/photo"
@@ -44,7 +44,7 @@
     <TextView
         android:layout_toRightOf="@id/photo"
         android:id="@+id/text_bid"
-        android:text="Bid:"
+        android:text="For:"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="2dp"
         android:layout_marginTop="30dp"
@@ -61,29 +61,6 @@
         android:textStyle="bold"
         android:layout_marginTop="30dp"
         android:textColor="#009688"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/distance"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/stars"
-        android:text="10m"
-        android:layout_marginTop="30dp"
-        android:textColor="#009688"
-        android:textStyle="bold"
-        android:layout_marginRight="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/text_distance"
-        android:layout_below="@id/stars"
-        android:layout_toLeftOf="@id/distance"
-        android:text="for: "
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="2dp"
-        android:textColor="#d6d6d6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

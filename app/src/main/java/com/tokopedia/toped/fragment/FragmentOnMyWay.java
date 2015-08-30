@@ -1,20 +1,29 @@
 package com.tokopedia.toped.fragment;
 
+import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import com.tokopedia.toped.R;
+import com.tokopedia.toped.adapter.ListViewMyWay;
 import com.tokopedia.toped.base.BaseFragment;
+
+import java.util.ArrayList;
 
 /**
  * Created by Tkpd_Eka on 8/29/2015.
  */
 public class FragmentOnMyWay extends BaseFragment{
 
-    private class ViewHolder{
+    private ListView list;
+    private ListViewMyWay adapter;
+    private ArrayList<ListViewMyWay.Model> models = new ArrayList<>();
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        adapter = new ListViewMyWay(getActivity(), models);
     }
-
-    private ViewHolder holder;
 
     @Override
     protected int getViewId() {
@@ -23,13 +32,13 @@ public class FragmentOnMyWay extends BaseFragment{
 
     @Override
     protected Object createViewHolder(View view) {
-        holder = new ViewHolder();
-        return holder;
+        list = (ListView)findViewById(R.id.list);
+        return list;
     }
 
     @Override
     protected void bindViewHolder(Object viewHolder) {
-        holder = (ViewHolder)viewHolder;
+        list = (ListView)viewHolder;
     }
 
     @Override

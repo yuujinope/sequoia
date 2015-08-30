@@ -37,8 +37,6 @@
         <activity android:name=".CarrierActivity"
             android:label="Carrier"/>
 
-        <!--<activity android:name=".ListingActivity"-->
-            <!--android:label="Get Done"/>-->
 
         <activity android:name=".DetailListingActivity"
             android:label="Detail listing"/>
