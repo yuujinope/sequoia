@@ -68,6 +68,8 @@ public class ListingActivity extends MainActivity{
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         pager = (ViewPager)mainView.findViewById(R.id.pager);
         fragments = new ArrayList<>();
+        fListing = new FragmentListing();
+        fOnmyWay = new FragmentOnMyWay();
         fragments.add(fListing);
         fragments.add(fOnmyWay);
         adapter = new ListingPagerAdapter(getFragmentManager());
