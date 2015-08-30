@@ -3,10 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     android:paddingTop="15dp"
-    android:paddingBottom="15dp"
     >
 
     <TextView
@@ -32,6 +31,7 @@
         android:id="@+id/clock"
         android:src="@drawable/clock_copy"
         android:layout_width="wrap_content"
+        android:layout_marginRight="5dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"/>
 
@@ -46,5 +46,12 @@
         />
 
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/time"
+        android:background="#e7e7e7"
+        />
 
 </RelativeLayout>

@@ -1,6 +1,8 @@
 package com.tokopedia.toped.adapter;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,8 @@ public class ListViewMyWay extends BaseAdapter{
         public double longitude;
         public double latitude;
         public String bids;
+        public int bidderNumber;
+
     }
 
     private class ViewHolder{
@@ -61,7 +65,7 @@ public class ListViewMyWay extends BaseAdapter{
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         if(view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.list_item_listing, viewGroup, false);
+            view = LayoutInflater.from(context).inflate(R.layout.list_item_myway, viewGroup, false);
             holder = new ViewHolder();
             holder.name = (TextView)view.findViewById(R.id.name);
             holder.address = (TextView)view.findViewById(R.id.address);
@@ -75,6 +79,8 @@ public class ListViewMyWay extends BaseAdapter{
     }
 
     private void bindView(Model model){
-
+        holder.name.setText(model.name);
+        holder.address.setText(model.to);
+        holder.bidder.setText("" + model.bidderNumber);
     }
 }

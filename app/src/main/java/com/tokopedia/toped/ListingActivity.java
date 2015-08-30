@@ -15,7 +15,13 @@ import android.widget.FrameLayout;
 import com.tokopedia.toped.base.MainActivity;
 import com.tokopedia.toped.fragment.FragmentListing;
 import com.tokopedia.toped.fragment.FragmentOnMyWay;
+import com.tokopedia.toped.restclient.NetworkClient;
 import com.tokopedia.toped.utils.GCMHandler;
+import com.tokopedia.toped.utils.UserData;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -65,6 +71,7 @@ public class ListingActivity extends MainActivity{
         adapter = new ListingPagerAdapter(getFragmentManager());
         pager.setAdapter(adapter);
         tabLayout.setupWithViewPager(pager);
+        loadUserDatas();
     }
 
     private void createView(int mainViewId){
@@ -94,5 +101,32 @@ public class ListingActivity extends MainActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void loadUserDatas(){
+        NetworkClient network = new NetworkClient(this, "http://128.199.227.169:8000/user");
+        network.setMethod(network.METHOD_GET);
+        network.setListener(new NetworkClient.NetworkClientSuccess() {
+            @Override
+            public void onSuccess(String s) {
+                saveUserDatas(s);
+            }
+        });
+        network.commit();
+    }
+
+
+    private void saveUserDatas(String s){
+        try {
+            JSONArray users = new JSONArray(s);
+            JSONObject user;
+            UserData udata = UserData.getInstance(this);
+            for(int i = 0; i< users.length() ; i++){
+                user = users.getJSONObject(i);
+                udata.addData(user.getString("id"), user.getString("user"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

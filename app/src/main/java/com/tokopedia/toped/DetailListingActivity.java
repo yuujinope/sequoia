@@ -25,6 +25,7 @@ import com.tokopedia.toped.adapter.ListViewListing;
 import com.tokopedia.toped.restclient.NetworkClient;
 import com.tokopedia.toped.restclient.VolleyNetwork;
 import com.tokopedia.toped.utils.MySession;
+import com.tokopedia.toped.utils.UserData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -119,6 +120,7 @@ public class DetailListingActivity extends AppCompatActivity {
                 temp.UserID = tempJson.getString("userid");
                 temp.BidAmt = tempJson.getString("amount");
                 temp.BidID = tempJson.getString("id");
+                temp.UserName = UserData.getInstance(this).getUserName(temp.UserID);
                 models.add(temp);
             }
         } catch (JSONException e) {
@@ -170,12 +172,12 @@ public class DetailListingActivity extends AppCompatActivity {
         View view = LayoutInflater.from(context).inflate(R.layout.list_item_bidder, null, false);
         TextView name = (TextView) view.findViewById(R.id.name);
         TextView bid = (TextView) view.findViewById(R.id.bid);
-        name.setText(model.UserID);
+        name.setText(model.UserName);
         bid.setText("$"+model.BidAmt);
         Log.i("Append List", model.UserID);
         Log.i("Append List", model.BidAmt);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(0,0,0,10);
+        lp.setMargins(0,0,0,20);
         view.setLayoutParams(lp);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,14 +204,16 @@ public class DetailListingActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        System.out.println("Something pressed");
         //noinspection SimplifiableIfStatement
         if (id == R.id.bid) {
            createBidDialog();
             return true;
         }
         else if(id == android.R.id.home){
+            System.out.println("Home pressed");
             onBackPressed();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
