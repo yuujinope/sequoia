@@ -94,6 +94,12 @@ public class FragmentListing extends BaseFragment{
         adapter.notifyDataSetChanged();
     }
 
+    public void refresh(){
+        models.clear();
+        adapter.notifyDataSetChanged();
+        getList();
+    }
+
     private ListViewListing.Model getModel(JSONObject item)throws JSONException{
         ListViewListing.Model model = new ListViewListing.Model();
         boolean myway = item.getBoolean("onmyway");

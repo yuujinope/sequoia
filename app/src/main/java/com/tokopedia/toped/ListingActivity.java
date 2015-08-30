@@ -58,6 +58,8 @@ public class ListingActivity extends MainActivity{
     String[] CONTENT = {"LISTING", "ON MY WAY"};
     ArrayList<Fragment> fragments;
     ListingPagerAdapter adapter;
+    FragmentListing fListing;
+    FragmentOnMyWay fOnmyWay;
 
     @Override
     protected void inflateMainView(int mainViewId) {
@@ -66,8 +68,8 @@ public class ListingActivity extends MainActivity{
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         pager = (ViewPager)mainView.findViewById(R.id.pager);
         fragments = new ArrayList<>();
-        fragments.add(new FragmentListing());
-        fragments.add(new FragmentOnMyWay());
+        fragments.add(fListing);
+        fragments.add(fOnmyWay);
         adapter = new ListingPagerAdapter(getFragmentManager());
         pager.setAdapter(adapter);
         tabLayout.setupWithViewPager(pager);
@@ -98,6 +100,9 @@ public class ListingActivity extends MainActivity{
         if (id == R.id.action_add) {
             startActivity(new Intent(getBaseContext(), PostListingActivity.class));
             return true;
+        }else if(id == R.id.refresh){
+            fListing.refresh();
+            fOnmyWay.refresh();
         }
 
         return super.onOptionsItemSelected(item);
