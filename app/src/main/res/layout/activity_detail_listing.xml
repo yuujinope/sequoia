@@ -96,14 +96,15 @@
             />
 
         <TextView
+            android:id="@+id/title_list"
             android:text="Bids:"
-            android:textColor="#eee"
+            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingLeft="10dp"
             android:paddingBottom="10dp"
-            android:textSize="11sp"
+            android:textSize="14sp"
             />
 
         <LinearLayout

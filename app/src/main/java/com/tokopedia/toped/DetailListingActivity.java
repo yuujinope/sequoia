@@ -37,12 +37,20 @@ import java.util.ArrayList;
  */
 public class DetailListingActivity extends AppCompatActivity {
 
+    private static final int SELLER_PENDING_LISTING = 1;
+    private static final int COURRIER_PENDING_LISTING = 2;
+    private static final int SELLER_ACCEPTED_LISTING = 3;
+    private static final int COURRIER_ACCEPTED_LISTING = 4;
+
+    private int State = 0;
+
     private Boolean isSeller = false;
     private String ListID;
 
     private class ViewHolder{
         TextView name;
         TextView toAddress;
+        TextView Title;
         LinearLayout list;
     }
 
@@ -67,7 +75,10 @@ public class DetailListingActivity extends AppCompatActivity {
         isSeller = MySession.getInstance(this).isSeller();
         String bidObj = getIntent().getExtras().getString("bid_obj");
         ListID = getIntent().getExtras().getString("list_id");
+        String status = getIntent().getExtras().getString("status");
         Log.i("TAGGG", bidObj);
+
+
         setContentView(R.layout.activity_detail_listing);
         holder = new ViewHolder();
 //        map = MapFragment.newInstance();
@@ -75,6 +86,7 @@ public class DetailListingActivity extends AppCompatActivity {
 //        mMap = map.getMap();
         holder.name = (TextView)findViewById(R.id.name);
         holder.name.setText("Kulit pisang");
+        holder.Title = (TextView) findViewById(R.id.title_list);
         /*holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +100,9 @@ public class DetailListingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        setState(status);
+        setTitleByState();
 //        data = getIntent().getParcelableExtra("data");
 //        initView();
 
@@ -192,6 +207,9 @@ public class DetailListingActivity extends AppCompatActivity {
         if (!isSeller) {
             getMenuInflater().inflate(R.menu.menu_detail_listing, menu);
             return true;
+        } else if (State == COURRIER_ACCEPTED_LISTING) {
+            getMenuInflater().inflate(R.menu.menu_detail_listing2, menu);
+            return true;
         }
         return false;
     }
@@ -210,6 +228,9 @@ public class DetailListingActivity extends AppCompatActivity {
         }
         else if(id == android.R.id.home){
             onBackPressed();
+        } else if(id == R.id.make_public) {
+            makePublic();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -241,8 +262,63 @@ public class DetailListingActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String s) {
                 Log.i("Network Response", s);
+                changeStatus();
             }
         });
         networkClient.commit();
+    }
+
+    private void changeStatus() {
+        NetworkClient networkClient = new NetworkClient(this, "http://128.199.227.169:8000/list/"+ListID);
+        networkClient.addParam("onmyway", "false");
+        networkClient.addParam("status", "approved");
+        networkClient.setMethod(VolleyNetwork.METHOD_PUT);
+        networkClient.setListener(new NetworkClient.NetworkClientSuccess() {
+            @Override
+            public void onSuccess(String s) {
+                Log.i("Network Response", s);
+            }
+        });
+        networkClient.commit();
+    }
+
+    private void makePublic() {
+        NetworkClient networkClient = new NetworkClient(this, "http://128.199.227.169:8000/list/"+ListID);
+        networkClient.addParam("onmyway", "false");
+        networkClient.addParam("status", "approved");
+        networkClient.setMethod(VolleyNetwork.METHOD_PUT);
+        networkClient.setListener(new NetworkClient.NetworkClientSuccess() {
+            @Override
+            public void onSuccess(String s) {
+                Log.i("Network Response", s);
+            }
+        });
+        networkClient.commit();
+    }
+
+    private void setState(String status) {
+        if (status.equals("approved") && isSeller) {
+            State = SELLER_ACCEPTED_LISTING;
+        } else if (status.equals("pending") && isSeller) {
+            State = SELLER_PENDING_LISTING;
+        } else if (status.equals("approved") && !isSeller) {
+            State = COURRIER_ACCEPTED_LISTING;
+        } else {
+            State = COURRIER_PENDING_LISTING;
+        }
+    }
+
+    private void setTitleByState() {
+        switch (State) {
+            case SELLER_ACCEPTED_LISTING:
+                holder.Title.setText("Your Order is taken by");
+                break;
+            case COURRIER_ACCEPTED_LISTING:
+                holder.Title.setText("Get your order now");
+                break;
+            default:
+                holder.Title.setText("Bids: ");
+                break;
+        }
     }
 }
