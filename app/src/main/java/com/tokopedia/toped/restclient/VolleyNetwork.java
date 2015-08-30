@@ -161,7 +161,7 @@ public abstract class VolleyNetwork {
         };
     }
 
-    private Response.ErrorListener onRequestErrorListener() {
+    protected Response.ErrorListener onRequestErrorListener() {
 
         return new Response.ErrorListener() {
             @Override
