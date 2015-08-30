@@ -206,7 +206,7 @@ public class DetailListingActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        if (!isSeller) {
+        if (State == COURRIER_PENDING_LISTING) {
             getMenuInflater().inflate(R.menu.menu_detail_listing, menu);
             return true;
         } else if (State == COURRIER_ACCEPTED_LISTING) {
@@ -287,7 +287,7 @@ public class DetailListingActivity extends AppCompatActivity {
 
     private void makePublic() {
         NetworkClient networkClient = new NetworkClient(this, "http://128.199.227.169:8000/list/"+ListID);
-        networkClient.addParam("onmyway", "false");
+        networkClient.addParam("onmyway", "true");
         networkClient.addParam("status", "approved");
         networkClient.setMethod(VolleyNetwork.METHOD_PUT);
         networkClient.setListener(new NetworkClient.NetworkClientSuccess() {
