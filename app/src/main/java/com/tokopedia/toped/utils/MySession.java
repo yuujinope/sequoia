@@ -81,4 +81,8 @@ public class MySession {
     public String getUserName() {
         return userName;
     }
+
+    public Boolean isSeller() {
+        return getUserType().equals("seller");
+    }
 }
