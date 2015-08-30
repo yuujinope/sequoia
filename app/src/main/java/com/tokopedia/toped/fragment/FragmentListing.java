@@ -87,13 +87,18 @@ public class FragmentListing extends BaseFragment{
     private void getResultToModels(JSONArray array)throws JSONException{
         int total = array.length();
         for(int i = 0; i<total; i++){
-            models.add(getModel(array.getJSONObject(i)));
+            ListViewListing.Model model = getModel(array.getJSONObject(i));
+            if (model != null)
+                models.add(model);
         }
         adapter.notifyDataSetChanged();
     }
 
     private ListViewListing.Model getModel(JSONObject item)throws JSONException{
         ListViewListing.Model model = new ListViewListing.Model();
+        boolean myway = item.getBoolean("onmyway");
+        if (myway)
+            return null;
         model.name = item.optString("title", "Botol aqua");
         model.to = item.getString("to");
         model.from = item.getString("from");
