@@ -27,8 +27,8 @@ public class ListViewMyWay extends BaseAdapter{
         public String time;
         public double longitude;
         public double latitude;
-        public String bids;
-        public int bidderNumber;
+        public String batches;
+        public int batchesNumber;
 
     }
 
@@ -81,6 +81,6 @@ public class ListViewMyWay extends BaseAdapter{
     private void bindView(Model model){
         holder.name.setText(model.name);
         holder.address.setText(model.to);
-        holder.bidder.setText("" + model.bidderNumber);
+        holder.bidder.setText("" + model.batchesNumber);
     }
 }

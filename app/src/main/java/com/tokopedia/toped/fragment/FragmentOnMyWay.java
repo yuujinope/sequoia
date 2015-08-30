@@ -2,7 +2,6 @@ package com.tokopedia.toped.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Created by Tkpd_Eka on 8/29/2015.
  */
-public class FragmentOnMyWay extends BaseFragment{
+public class FragmentOnMyWay extends BaseFragment {
 
     private ListView list;
     private ListViewMyWay adapter;
@@ -41,13 +40,13 @@ public class FragmentOnMyWay extends BaseFragment{
 
     @Override
     protected Object createViewHolder(View view) {
-        list = (ListView)findViewById(R.id.list);
+        list = (ListView) findViewById(R.id.list);
         return list;
     }
 
     @Override
     protected void bindViewHolder(Object viewHolder) {
-        list = (ListView)viewHolder;
+        list = (ListView) viewHolder;
     }
 
     @Override
@@ -57,14 +56,15 @@ public class FragmentOnMyWay extends BaseFragment{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), DetailMyWayActivity.class);
-                intent.putExtra("data", models.get(i).bids);
+                intent.putExtra("data", models.get(i).batches);
+                intent.putExtra("listid", models.get(i).ListID);
                 startActivity(intent);
             }
         });
         getOnMyWayList();
     }
 
-    private void getOnMyWayList(){
+    private void getOnMyWayList() {
         NetworkClient network = new NetworkClient(getActivity(), "http://128.199.227.169:8000/list");
         network.setMethod(network.METHOD_GET);
         network.setListener(new NetworkClient.NetworkClientSuccess() {
@@ -81,27 +81,27 @@ public class FragmentOnMyWay extends BaseFragment{
         network.commit();
     }
 
-    private void getResultToModels(JSONArray array)throws JSONException {
+    private void getResultToModels(JSONArray array) throws JSONException {
         int total = array.length();
-        for(int i = 0; i<total; i++){
+        for (int i = 0; i < total; i++) {
             ListViewMyWay.Model model = getModel(array.getJSONObject(i));
-            if(model != null)
+            if (model != null)
                 models.add(model);
         }
         adapter.notifyDataSetChanged();
     }
 
-    private ListViewMyWay.Model getModel(JSONObject item)throws JSONException{
+    private ListViewMyWay.Model getModel(JSONObject item) throws JSONException {
         ListViewMyWay.Model model = new ListViewMyWay.Model();
         boolean myway = item.getBoolean("onmyway");
-        if(!myway)
+        if (!myway)
             return null;
-        JSONArray bidders = item.getJSONArray("bids");
+        JSONArray batches = item.getJSONArray("batches");
         model.name = item.optString("title", "Botol aqua");
         model.to = item.getString("to");
         model.from = item.getString("from");
         model.userId = item.getString("userid");
-        model.bids = item.getString("bids");
+        model.batches = item.getString("batches");
         model.ListID = item.getString("id");
         String geo = item.getString("geo");
         String lat = geo.substring(0, geo.indexOf(','));
@@ -109,7 +109,7 @@ public class FragmentOnMyWay extends BaseFragment{
         model.latitude = Double.valueOf(lat);
         model.longitude = Double.valueOf(lon);
         model.time = "50";
-        model.bidderNumber = bidders.length();
+        model.batchesNumber = batches.length();
         return model;
     }
 }
