@@ -30,12 +30,10 @@ public class UserData {
     }
 
     public void addData(String id, String userName){
-        System.out.println("Saving this " + id + " " + userName);
         data.put(id, userName);
     }
 
     public String getUserName(String id){
-        System.out.println("Loaded " + data.size() + " " + data.get(id));
         return data.get(id);
     }
 
