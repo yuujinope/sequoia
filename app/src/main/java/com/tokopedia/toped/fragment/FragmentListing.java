@@ -57,7 +57,10 @@ public class FragmentListing extends BaseFragment{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), DetailListingActivity.class);
-                intent.putExtra("data", models.get(i));
+                Bundle bundle = new Bundle();
+                bundle.putString("bid_obj", models.get(i).bids);
+                bundle.putString("list_id", models.get(i).ListID);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -94,6 +97,8 @@ public class FragmentListing extends BaseFragment{
         model.to = item.getString("to");
         model.from = item.getString("from");
         model.userId = item.getString("userid");
+        model.bids = item.getString("bids");
+        model.ListID = item.getString("id");
         String geo = item.getString("geo");
         String lat = geo.substring(0, geo.indexOf(','));
         String lon = geo.substring(geo.indexOf(',') + 1);

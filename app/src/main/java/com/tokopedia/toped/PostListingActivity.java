@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -87,10 +88,14 @@ public class PostListingActivity extends MainActivity{
                 @Override
                 public void onSuccess(String s) {
                     System.out.println("KIRISAME oke~ " + s);
+                    Toast.makeText(getBaseContext(), "Success add listing", Toast.LENGTH_SHORT);
+                    finish();
                 }
             });
             network.commit();
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

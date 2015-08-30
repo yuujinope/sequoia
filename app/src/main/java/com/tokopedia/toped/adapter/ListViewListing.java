@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class ListViewListing extends BaseAdapter{
 
     public static class Model implements Parcelable{
+        public String ListID;
         public String userId;
         public String name;
         public String from;
