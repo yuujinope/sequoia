@@ -17,7 +17,15 @@ import java.util.ArrayList;
 public class ListViewMyWay extends BaseAdapter{
 
     public static class Model{
-
+        public String ListID;
+        public String userId;
+        public String name;
+        public String from;
+        public String to;
+        public String time;
+        public double longitude;
+        public double latitude;
+        public String bids;
     }
 
     private class ViewHolder{

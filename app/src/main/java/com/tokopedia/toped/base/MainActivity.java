@@ -37,13 +37,6 @@ public abstract class MainActivity extends AppCompatActivity {
 
     private void prepareToolbar() {
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.menu);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.openDrawer(GravityCompat.START);
-            }
-        });
     }
 
     @Override

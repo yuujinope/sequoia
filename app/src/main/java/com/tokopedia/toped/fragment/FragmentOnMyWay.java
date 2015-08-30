@@ -7,6 +7,7 @@ import android.widget.ListView;
 import com.tokopedia.toped.R;
 import com.tokopedia.toped.adapter.ListViewMyWay;
 import com.tokopedia.toped.base.BaseFragment;
+import com.tokopedia.toped.restclient.NetworkClient;
 
 import java.util.ArrayList;
 
@@ -44,5 +45,9 @@ public class FragmentOnMyWay extends BaseFragment{
     @Override
     protected void onCreateView() {
 
+    }
+
+    private void getOnMyWayList(){
+        NetworkClient network = new NetworkClient(getActivity(), "http://128.199.227.169:8000/list");
     }
 }

@@ -87,6 +87,7 @@ public class DetailListingActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        data = getIntent().getParcelableExtra("data");
 //        initView();
 
@@ -150,7 +151,7 @@ public class DetailListingActivity extends AppCompatActivity {
 
     private void createBidDialog(){
         if (!isSeller) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(this, android.R.style.Theme_Material_Light_Dialog);
+            AlertDialog.Builder alert = new AlertDialog.Builder(this, android.R.style.Theme_Material_Light_Dialog_Alert);
             alert.setTitle("Place a bid");
             final EditText amtText = new EditText(this);
             amtText.setTextColor(Color.BLACK);
@@ -206,6 +207,9 @@ public class DetailListingActivity extends AppCompatActivity {
         if (id == R.id.bid) {
            createBidDialog();
             return true;
+        }
+        else if(id == android.R.id.home){
+            onBackPressed();
         }
 
         return super.onOptionsItemSelected(item);
