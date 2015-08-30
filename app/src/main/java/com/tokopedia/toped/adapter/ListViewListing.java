@@ -31,6 +31,7 @@ public class ListViewListing extends BaseAdapter{
         public double longitude;
         public double latitude;
         public String bids;
+        public String status;
 
         public Model(){}
 

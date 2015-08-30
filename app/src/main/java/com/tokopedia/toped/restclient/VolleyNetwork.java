@@ -41,7 +41,10 @@ public abstract class VolleyNetwork {
 
         @Override
         public Map<String, String> getHeaders() throws AuthFailureError {
-            return header;
+            HashMap<String, String> headers = new HashMap<>();
+            headers.put("Content-Type", "application/x-www-form-urlencoded");
+            headers.put("Accept", "application/json");
+            return headers;
         }
 
         @Override

@@ -60,6 +60,7 @@ public class FragmentListing extends BaseFragment{
                 Bundle bundle = new Bundle();
                 bundle.putString("bid_obj", models.get(i).bids);
                 bundle.putString("list_id", models.get(i).ListID);
+                bundle.putString("status", models.get(i).status);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -99,6 +100,7 @@ public class FragmentListing extends BaseFragment{
         model.userId = item.getString("userid");
         model.bids = item.getString("bids");
         model.ListID = item.getString("id");
+        model.status = item.getString("status");
         String geo = item.getString("geo");
         String lat = geo.substring(0, geo.indexOf(','));
         String lon = geo.substring(geo.indexOf(',') + 1);
